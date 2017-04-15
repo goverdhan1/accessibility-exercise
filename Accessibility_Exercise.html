@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<title>Accessibility Exercise</title>
+
+	<style type="text/css">
+		body {
+			background-color: #eee;
+		}
+
+		header {
+			background-color: #eee;
+			padding-bottom: 10px;
+			width: 30%;
+			margin: auto;
+		}
+
+		.logo {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 1.4em;
+			text-decoration: underline;
+			width: 30%;
+		}
+
+		.menu {
+			display: inline-block;
+			float: right;
+			margin-top: 5px;
+		}
+
+		.menu ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.menu ul li {
+			display: inline;
+			list-style: none;
+			border-right: 1px solid black;
+		}
+
+		.menu ul li a {
+			text-decoration: none;
+			color: #000;
+			padding: 5px;
+		}
+
+		.menu ul li:last-child {
+			border-right: none;
+		}
+
+		main {
+			margin: auto;
+			background: #fff;
+			padding: 10px;
+			width: 30%;
+		}
+
+		.subheading {
+			background-color: #eee;
+			font-size: 1em;
+			padding: 5px 10px;
+			border-radius: 2px;
+		}
+
+		.title {
+			width: 100px;
+		}
+
+		.open-account-form label {
+			display: block;
+		}
+
+		.open-account-form input {
+			display: block;
+			border-radius: 3px;
+			width: 96%;
+			margin: 5px 0 10px 0;
+			padding: 5px;
+		}
+
+		.open-account-form select {
+			border-radius: 3px;
+			margin: 5px 0 10px 0;
+			padding: 5px;
+		}
+
+		.open-account-form button {
+			padding: 5px;
+			margin: 5px 0;
+		}
+
+		button.link-btn {
+			float: right;
+			border: none;
+			color: blue;
+			cursor: pointer;
+			background: none;
+			margin: 0;
+		}
+
+		.tbl-caption {
+			background-color: #eee;
+			font-size: 1em;
+			padding: 5px 10px;
+			border-radius: 2px;
+			margin-bottom: 20px;
+			text-align: left;
+			font-weight: bold;
+		}
+
+		table.grid {
+			margin: 20px 0;
+			border-collapse: collapse;
+			width: 100%;
+			border: 1px solid black;
+			table-layout: fixed;
+		}
+
+		td {
+			border: 1px solid black;
+			text-align: center;
+		}
+
+		footer {
+			text-align: center;
+			padding: 20px 0;
+		}
+
+		.clearfix {
+			width: 100%;
+			height: 0px !important;
+			visibility: hidden;
+			display: block;
+			clear: both;
+			content: ""
+		}
+	</style>
+</head>
+
+<body>
+	<header aria-labelledby="logo" role="presentation">
+		<div class="logo" id="logo">Test page</div>
+		<nav class="menu" role="navigation" aria-label="Main menu">
+			<ul>
+				<li><a href="#About" alt="About" role="menuitem">About</a></li>
+				<li><a href="#Registration" alt="Registration" role="menuitem">Registration</a></li>
+				<li><a href="#contact" target="_blank" alt="Contact" role="link">Contact</a></li>
+			</ul>
+		</nav>
+		<div class="clearfix"></div>
+	</header>
+	<main role="main">
+		<section role="account form">
+			<h1 role="heading" aria-level="1">Open an account</h1>
+			<h2 role="heading" aria-level="2" class="subheading">Your personal details</h2>
+			<form class="open-account-form" name="openAccount" role="form" error>
+				<label for="title" title="Title">Title</label>
+				<select id="title" class="title" tabindex="1">
+        <option>Mr</option>
+        <option>Miss</option>
+    	</select>
+				<label for="FirstName" title="First Name">First name</label>
+				<input name="FirstName" id="FirstName" type="text" tabindex="2" aria-invalid="true" placeholder="Enter First Name" required="! Please enter your Firstname" />
+
+				<label for="Surname" title="Surname">Surname</label>
+				<input name="Surname" id="Surname" type="text" tabindex="3" placeholder="Enter Surname" required="! Please enter your surname" />
+
+				<fieldset>
+					<legend title="Date of Birth">Date of Birth</legend>
+
+					<select class="select" id="date" title="Date" tabindex="4">
+        <option selected="selected" value="null">DD</option>
+    	</select>
+					<select class="select" id="month" title="Month" tabindex="5">
+        <option selected="selected" value="null">MMM</option>
+    </select>
+					<select class="select" id="year" title="Year" tabindex="6">
+        <option selected="selected" value="null">YYYY</option>
+    </select>
+				</fieldset>
+				<fieldset>
+					<legend title="Gender">Gender</legend>
+
+					<button id="male" value="male" type="button" tabindex="7">Male</button>
+					<button id="female" value="female" type="button" tabindex="8">Female</button>
+
+				</fieldset>
+				<button class="link-btn" type="submit" tabindex="9">Submit</button>
+			</form>
+		</section>
+		<div class="clearfix"></div>
+		<section>
+			<table class="grid" summary="Registered users">
+				<caption class="tbl-caption" tabindex="10">Registered Users</caption>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>First name</th>
+						<th>Surname</th>
+						<th>Date of Birth</th>
+						<th>Gender</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mr</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>Mr</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>Mr</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</section>
+		<hr role="separator"></hr>
+		<section class="registered-users">
+			<div>
+				<button class="link-btn" id="hideShowDetails">
+				<span id="show" style="display:none" aria-hidden="true">Show Detials <i>&#x2193;</i></span>
+				<span id="hide" style="display:block">Hide Detials <i>&#x2191;</i></span>
+			</button>
+			</div>
+			<div class="clearfix"></div>
+			<div tabindex="-1" id="registeredUserDetails" aria-hidden="true">
+				<h3 role="heading" aria-level="2">Registered User Details</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</p>
+			</div>
+		</section>
+
+		<script>
+			$("#hideShowDetails").click(function() {
+				$("#hide").toggle();
+				$("#registeredUserDetails").toggle();
+				$("#show").toggle();
+			});
+		</script>
+
+		<hr role="separator"></hr>
+		<footer role="contentinfo">
+			<div>Test Page 2015</div>
+		</footer>
+	</main>
+</body>
+
+</html>
