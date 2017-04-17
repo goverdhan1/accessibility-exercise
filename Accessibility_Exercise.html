@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<title>Accessibility Exercise</title>
 
@@ -33,25 +32,17 @@
 			margin-top: 5px;
 		}
 
-		.menu ul {
-			list-style-type: none;
-			padding: 0;
-			margin: 0;
-		}
-
-		.menu ul li {
-			display: inline;
-			list-style: none;
+		.menu span {
 			border-right: 1px solid black;
 		}
 
-		.menu ul li a {
+		.menu span a {
 			text-decoration: none;
 			color: #000;
 			padding: 5px;
 		}
 
-		.menu ul li:last-child {
+		.menu span:last-child {
 			border-right: none;
 		}
 
@@ -141,6 +132,14 @@
 			clear: both;
 			content: ""
 		}
+		[aria-hidden] {
+			display: none !important;
+		}
+
+		[aria-invalid=true] {
+		  border: red thin solid;
+		}
+
 	</style>
 </head>
 
@@ -148,10 +147,9 @@
 	<header aria-labelledby="logo" role="presentation">
 		<div class="logo" id="logo">Test page</div>
 		<nav class="menu" role="navigation" aria-label="Main menu">
-			<ul>
-				<li><a href="#About" alt="About" role="menuitem">About</a></li>
-				<li><a href="#Registration" alt="Registration" role="menuitem">Registration</a></li>
-				<li><a href="#contact" target="_blank" alt="Contact" role="link">Contact</a></li>
+				<span role="link"><a href="#About" alt="About" tabindex="0">About</a></span>
+				<span role="link"><a href="#Registration" alt="Registration" tabindex="0">Registration</a></span>
+				<span role="link"><a href="#contact" target="_blank" alt="Contact" tabindex="0">Contact</a></span>
 			</ul>
 		</nav>
 		<div class="clearfix"></div>
@@ -162,73 +160,71 @@
 			<h2 role="heading" aria-level="2" class="subheading">Your personal details</h2>
 			<form class="open-account-form" name="openAccount" role="form" error>
 				<label for="title" title="Title">Title</label>
-				<select id="title" class="title" tabindex="1">
+				<select id="title" class="title" tabindex="1" aria-labelledby = "title" aria-required="true">
         <option>Mr</option>
         <option>Miss</option>
     	</select>
 				<label for="FirstName" title="First Name">First name</label>
-				<input name="FirstName" id="FirstName" type="text" tabindex="2" aria-invalid="true" placeholder="Enter First Name" required="! Please enter your Firstname" />
+				<input name="FirstName" id="FirstName" type="text" tabindex="2" aria-labelledby = "First Name" aria-live="assertive" aria-invalid="true" placeholder="Enter First Name" required="! Please enter your Firstname" />
 
 				<label for="Surname" title="Surname">Surname</label>
-				<input name="Surname" id="Surname" type="text" tabindex="3" placeholder="Enter Surname" required="! Please enter your surname" />
+				<input name="Surname" id="Surname" type="text" tabindex="3" aria-labelledby = "Surname" aria-required="true" aria-live="assertive" placeholder="Enter Surname" required="! Please enter your surname" />
 
 				<fieldset>
-					<legend title="Date of Birth">Date of Birth</legend>
+					<legend title="Date of Birth" aria-labelledby = "Date of Birth">Date of Birth</legend>
 
-					<select class="select" id="date" title="Date" tabindex="4">
+					<select class="select" id="date" title="Date" tabindex="4" aria-labelledby = "Date">
         <option selected="selected" value="null">DD</option>
     	</select>
-					<select class="select" id="month" title="Month" tabindex="5">
+					<select class="select" id="month" title="Month" tabindex="5" aria-labelledby = "Month">
         <option selected="selected" value="null">MMM</option>
     </select>
-					<select class="select" id="year" title="Year" tabindex="6">
+					<select class="select" id="year" title="Year" tabindex="6" aria-labelledby = "Year">
         <option selected="selected" value="null">YYYY</option>
     </select>
 				</fieldset>
-				<fieldset>
+				<fieldset aria-labelledby = "Gender">
 					<legend title="Gender">Gender</legend>
-
-					<button id="male" value="male" type="button" tabindex="7">Male</button>
-					<button id="female" value="female" type="button" tabindex="8">Female</button>
-
+					<button id="male" value="male" type="button" tabindex="7" aria-labelledby = "Male" aria-describedBy = "gender">Male</button>
+					<button id="female" value="female" type="button" tabindex="8" aria-labelledby = "Female" aria-describedBy = "gender">Female</button>
 				</fieldset>
 				<button class="link-btn" type="submit" tabindex="9">Submit</button>
 			</form>
 		</section>
 		<div class="clearfix"></div>
 		<section>
-			<table class="grid" summary="Registered users">
+			<table class="grid" summary="Registered users" aria-readonly="true" role="grid" aria-labelledby = "Registered Users" tabindex = "0" frame="box">
 				<caption class="tbl-caption" tabindex="10">Registered Users</caption>
 				<thead>
-					<tr>
-						<th>Title</th>
-						<th>First name</th>
-						<th>Surname</th>
-						<th>Date of Birth</th>
-						<th>Gender</th>
+					<tr role="row">
+						<th role="columnheader">Title</th>
+						<th role="columnheader">First name</th>
+						<th role="columnheader">Surname</th>
+						<th role="columnheader">Date of Birth</th>
+						<th role="columnheader">Gender</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Mr</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
+					<tr role="row">
+						<td role="gridcell">Mr</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
 					</tr>
 					<tr>
-						<td>Mr</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
+						<td role="gridcell">Mrs</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
 					</tr>
 					<tr>
-						<td>Mr</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
-						<td>test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
+						<td role="gridcell">test</td>
 					</tr>
 				</tbody>
 			</table>
